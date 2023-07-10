@@ -1,0 +1,22 @@
+PUT http://localhost:8080/usuario/update/1
+Content-Type: application/json
+
+{
+  "usuario": "fulano21",
+  "password": "1234567",
+  "estatus": 1,
+  "rol": {
+    "idRol": 2
+  },
+  "empresa": {
+    "idEmpresa": 1
+  },
+  "cobrador": {
+    "nombre": "Fulano",
+    "apellido": "Sanchez",
+    "cedula": "40422332255",
+    "direccion": "Calle genral #41",
+    "telefono": "8901221112",
+    "fechaIngreso": "2023-07-10T17:44:03Z"
+  }
+}

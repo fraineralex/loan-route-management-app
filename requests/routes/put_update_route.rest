@@ -1,0 +1,14 @@
+PUT http://localhost:8080/ruta/update/1
+Content-Type: application/json
+
+{
+  "nombre":"Matancita",
+  "dia":"LUNES",
+  "zona":{
+      "idZona":1
+  },
+  "cobrador":{
+      "idCobrador":3
+  }
+
+}
