@@ -1,40 +1,47 @@
-.app-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+@import url('https://cdn.syncfusion.com/ej2/material.css');
+
+.sidebar {
+  box-shadow: rgb(113 122 131 / 11%) 0px 7px 30px 0px;
+}
+.nav-item,
+.navbar {
+  z-index: 10000;
+}
+@media  screen and (max-width:800px) {
+  .sidebar{
+    z-index: 10000000;
+  }
 }
 
-.footer {
-  background-color: #343a40;
-  color: #fff;
-  padding: 30px 0;
-  height: auto;
-  margin-top: auto;
-  width: 134.2%;
+.e-dlg-center-center, .e-quick-popup-wrapper.e-device{
+  z-index: 1000000 !important;
 }
 
-.footer-nav {
-  display: flex;
-  justify-content: center;
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgb(216, 216, 216);
+  border-radius: 40px;
+}
+::-webkit-scrollbar-track {
+  background-color: transparent;
 }
 
-.footer-nav-list {
-  display: flex;
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+/* color-picker style  */
+
+ #preview {
+  background: transparent
+    url('https://ej2.syncfusion.com/react/demos/src/color-picker/images/pen.png')
+    no-repeat;
+  display: inline-block;
+  height: 80px;
+  margin: 10px 0;
+  min-width: 300px;
+  max-width: 600px;
+  background-color: #008000;
 }
 
-.footer-nav-item {
-  margin-right: 20px;
-}
-
-.footer-nav-link {
-  color: #fff;
-  text-decoration: none;
-  font-size: 18px;
-}
-
-.footer-nav-link:hover {
-  text-decoration: underline;
+.e-input-group:not(.e-float-icon-left), .e-input-group.e-success:not(.e-float-icon-left), .e-input-group.e-warning:not(.e-float-icon-left), .e-input-group.e-error:not(.e-float-icon-left), .e-input-group.e-control-wrapper:not(.e-float-icon-left), .e-input-group.e-control-wrapper.e-success:not(.e-float-icon-left), .e-input-group.e-control-wrapper.e-warning:not(.e-float-icon-left), .e-input-group.e-control-wrapper.e-error:not(.e-float-icon-left){
+  border: none;
 }
