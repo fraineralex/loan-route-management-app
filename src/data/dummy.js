@@ -65,10 +65,10 @@ const gridEmployeeProfile = (props) => (
   <div className="flex items-center gap-2">
     <img
       className="rounded-full w-10 h-10"
-      src={props.EmployeeImage}
+      src={props.employeeImage}
       alt="employee"
     />
-    <p>{props.Name}</p>
+    <p>{props.name}</p>
   </div>
 );
 
@@ -124,19 +124,19 @@ const customerGridImage = (props) => (
   <div className="image flex gap-4">
     <img
       className="rounded-full w-10 h-10"
-      src={props.CustomerImage}
+      src={props.customerImage}
       alt="employee"
     />
     <div>
-      <p>{props.CustomerName}</p>
-      <p>{props.CustomerEmail}</p>
+      <p>{props.name}</p>
+      <p>{props.email}</p>
     </div>
   </div>
 );
 
 const customerGridStatus = (props) => (
   <div className="flex gap-2 justify-center items-center text-gray-700 capitalize">
-    <p style={{ background: props.StatusBg }} className="rounded-full h-3 w-3" />
+    <p style={{ background: props.status === 1 ? '#8BE78B' : '#FEC90F' }} className="rounded-full h-3 w-3" />
     <p>{props.Status}</p>
   </div>
 );
@@ -393,40 +393,38 @@ export const LinePrimaryYAxis = {
 
 export const customersGrid = [
   { type: 'checkbox', width: '50' },
-  { headerText: 'Name',
-    width: '150',
+  { headerText: 'Cliente',
+    width: '200',
     template: customerGridImage,
     textAlign: 'Center' },
-  { field: 'ProjectName',
-    headerText: 'Project Name',
+  { field: 'lugarTrabajo',
+    headerText: 'Lugar de Trabajo',
     width: '150',
     textAlign: 'Center' },
-  { field: 'Status',
-    headerText: 'Status',
-    width: '130',
+  { field: 'status',
+    headerText: 'Estado',
+    width: '100',
     format: 'yMd',
     textAlign: 'Center',
-    template: customerGridStatus },
-  {
-    field: 'Weeks',
-    headerText: 'Weeks',
-    width: '100',
-    format: 'C2',
+  },
+  { field: 'ocupacion',
+    headerText: 'Ocupación',
+    width: '150',
     textAlign: 'Center' },
-  { field: 'Budget',
-    headerText: 'Budget',
-    width: '100',
+  { field: 'entryDate',
+    headerText: 'Fecha Ingreso',
+    width: '120',
     format: 'yMd',
     textAlign: 'Center' },
 
-  { field: 'Location',
-    headerText: 'Location',
+  { field: 'cedula',
+    headerText: 'Cédula',
     width: '150',
     textAlign: 'Center' },
 
-  { field: 'CustomerID',
-    headerText: 'Customer ID',
-    width: '120',
+  { field: 'customerID',
+    headerText: 'ID',
+    width: '80',
     textAlign: 'Center',
     isPrimaryKey: true,
   },
@@ -434,43 +432,47 @@ export const customersGrid = [
 ];
 
 export const employeesGrid = [
-  { headerText: 'Employee',
-    width: '150',
+  { type: 'checkbox', width: '50' },
+  { headerText: 'Empleado',
+    width: '170',
     template: gridEmployeeProfile,
     textAlign: 'Center' },
-  { field: 'Name',
+  { field: 'name',
     headerText: '',
     width: '0',
     textAlign: 'Center',
   },
-  { field: 'Title',
-    headerText: 'Designation',
-    width: '170',
+  { field: 'username',
+    headerText: 'Usuario',
+    width: '120',
+    textAlign: 'Center' },
+  { field: 'role',
+    headerText: 'Rol',
+    width: '120',
     textAlign: 'Center',
   },
-  { headerText: 'Country',
+  { field: 'status',
+    headerText: 'Estado',
     width: '120',
     textAlign: 'Center',
-    template: gridEmployeeCountry },
-
-  { field: 'HireDate',
-    headerText: 'Hire Date',
-    width: '135',
+  },
+  { field: 'hireDate',
+    headerText: 'Fecha Ingreso',
+    width: '130',
     format: 'yMd',
     textAlign: 'Center' },
-
-  { field: 'ReportsTo',
-    headerText: 'Reports To',
+  { field: 'company',
+    headerText: 'Empresa',
     width: '120',
     textAlign: 'Center' },
-  { field: 'EmployeeID',
-    headerText: 'Employee ID',
-    width: '125',
+  { field: 'employeeID',
+    headerText: 'ID',
+    width: '120',
     textAlign: 'Center' },
 ];
 
 export const links = [
-  {
+  /* {
     title: 'Dashboard',
     links: [
       {
@@ -478,34 +480,59 @@ export const links = [
         icon: <FiShoppingBag />,
       },
     ],
-  },
+  }, */
 
   {
-    title: 'Pages',
+    title: 'Servicios',
     links: [
       {
-        name: 'orders',
+        name: 'prestamos',
+        key: 'loans',
         icon: <AiOutlineShoppingCart />,
       },
       {
-        name: 'employees',
+        name: 'empleados',
+        key: 'employees',
         icon: <IoMdContacts />,
       },
       {
-        name: 'customers',
+        name: 'clientes',
+        key: 'customers',
         icon: <RiContactsLine />,
+      },
+      {
+        name: 'cuadres',
+        key: 'balances',
+        icon: <FiShoppingBag />,
+      },
+      {
+        name: 'cobranzas',
+        key: 'collections',
+        icon: <FiShoppingBag />,
+      },
+      {
+        name: 'gastos',
+        key: 'expenses',
+        icon: <FiShoppingBag />,
+      },
+      {
+        name: 'recibos',
+        key: 'receipts',
+        icon: <FiShoppingBag />,
       },
     ],
   },
   {
-    title: 'Apps',
+    title: 'Aplicaciones',
     links: [
       {
-        name: 'calendar',
+        name: 'calendario',
+        key: 'calendar',
         icon: <AiOutlineCalendar />,
       },
       {
-        name: 'kanban',
+        name: 'tareas',
+        key: 'kanban',
         icon: <BsKanban />,
       },
     ],
@@ -933,8 +960,8 @@ export const customersData = [
   {
     CustomerID: 1005,
 
-    CustomerName: 'Michael',
-    CustomerEmail: 'michael@gmail.com',
+    CustomerName: 'Juan',
+    CustomerEmail: 'juan@gmail.com',
     ProjectName: 'Weekly WP Theme',
     Status: 'Cancel',
     CustomerImage:
@@ -942,7 +969,7 @@ export const customersData = [
     StatusBg: 'red',
     Weeks: '34',
     Budget: '$16.5k',
-    Location: 'USA',
+    Location: 'Dominican Republic',
   },
   {
     CustomerID: 1006,
@@ -1003,8 +1030,8 @@ export const customersData = [
   {
     CustomerID: 1010,
 
-    CustomerName: 'Michael',
-    CustomerEmail: 'michael@gmail.com',
+    CustomerName: 'Juan',
+    CustomerEmail: 'juan@gmail.com',
     ProjectName: 'Weekly WP Theme',
     Status: 'Cancel',
     CustomerImage:
@@ -1073,8 +1100,8 @@ export const customersData = [
   {
     CustomerID: 1015,
 
-    CustomerName: 'Michael',
-    CustomerEmail: 'michael@gmail.com',
+    CustomerName: 'Juan',
+    CustomerEmail: 'juan@gmail.com',
     ProjectName: 'Weekly WP Theme',
     Status: 'Cancel',
     CustomerImage:
@@ -1143,8 +1170,8 @@ export const customersData = [
   {
     CustomerID: 1020,
 
-    CustomerName: 'Michael',
-    CustomerEmail: 'michael@gmail.com',
+    CustomerName: 'Juan',
+    CustomerEmail: 'juan@gmail.com',
     ProjectName: 'Weekly WP Theme',
     Status: 'Cancel',
     CustomerImage:
@@ -1213,8 +1240,8 @@ export const customersData = [
   {
     CustomerID: 1025,
 
-    CustomerName: 'Michael',
-    CustomerEmail: 'michael@gmail.com',
+    CustomerName: 'Juan',
+    CustomerEmail: 'juan@gmail.com',
     ProjectName: 'Weekly WP Theme',
     Status: 'Cancel',
     CustomerImage:
@@ -1283,8 +1310,8 @@ export const customersData = [
   {
     CustomerID: 1030,
 
-    CustomerName: 'Michael',
-    CustomerEmail: 'michael@gmail.com',
+    CustomerName: 'Juan',
+    CustomerEmail: 'juan@gmail.com',
     ProjectName: 'Weekly WP Theme',
     Status: 'Cancel',
     CustomerImage:
@@ -1353,8 +1380,8 @@ export const customersData = [
   {
     CustomerID: 1035,
 
-    CustomerName: 'Michael',
-    CustomerEmail: 'michael@gmail.com',
+    CustomerName: 'Juan',
+    CustomerEmail: 'juan@gmail.com',
     ProjectName: 'Weekly WP Theme',
     Status: 'Cancel',
     CustomerImage:
@@ -1421,8 +1448,8 @@ export const customersData = [
   },
   {
     CustomerID: 1040,
-    CustomerName: 'Michael',
-    CustomerEmail: 'michael@gmail.com',
+    CustomerName: 'Juan',
+    CustomerEmail: 'juan@gmail.com',
     ProjectName: 'Weekly WP Theme',
     Status: 'Cancel',
     CustomerImage:

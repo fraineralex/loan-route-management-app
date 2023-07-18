@@ -1,0 +1,260 @@
+[
+  {
+    "idUsuario": 11,
+    "usuario": "mustafa01",
+    "password": "$2a$10$DF98ar//7/ogE1RNd6yekuUmt5W13JwBRE2OVnmUvMX.z43sxUnuS",
+    "estatus": 1,
+    "rol": {
+      "idRol": 2,
+      "nombre": "ROLE_USER"
+    },
+    "empresa": {
+      "idEmpresa": 2,
+      "nombre": "INVERCREDI",
+      "direccion": "Calle General Florimon, Matancitas",
+      "telefono": "809-999-9999",
+      "email": "inver@credi.com"
+    },
+    "cobrador": {
+      "idCobrador": 6,
+      "nombre": "Mustafa",
+      "apellido": "Calimete",
+      "cedula": "40422332223",
+      "direccion": "Calle genral #41",
+      "telefono": "8901221111",
+      "fechaIngreso": "2023-05-23T12:01:03",
+      "rutas": [
+        {
+          "idRuta": 5,
+          "nombre": "Matancita",
+          "dia": "LUNES",
+          "zona": {
+            "idZona": 2,
+            "nombre": "MARIA TRINIDAD SANCEZ",
+            "direccion": "PARTE NORTE",
+            "estatus": 1
+          },
+          "clientes": [
+            {
+              "idCliente": 6,
+              "nombre": "John",
+              "apellido": "Doe",
+              "cedula": "123456789",
+              "direccion": "123 Main St",
+              "fechaNacimiento": "2023-05-24T09:30:00",
+              "lugarTrabajo": "ABC Company",
+              "telTrabajo": "555-123-456",
+              "celular": "555-987-654",
+              "telResidencia": "555-789-123",
+              "email": "john.doe@example.com",
+              "ocupacion": "Engineer",
+              "recomendado": "Jane Smith",
+              "observaciones": "Some observations",
+              "fechaIngreso": "2023-05-24T11:00:00",
+              "estatus": 1,
+              "prestamos": [
+                {
+                  "idPrestamo": 5,
+                  "fecha": "2023-05-24T09:30:00",
+                  "monto": 3000,
+                  "tipoPrestamo": "SEMANAL_13",
+                  "vencimiento": "2023-06-24T09:30:00",
+                  "interes": 900,
+                  "cuotas": 13,
+                  "estado": 0,
+                  "pagares": [
+                    {
+                      "idPagare": 15,
+                      "noPagare": 1,
+                      "capital": 230.76923076923077,
+                      "interes": 69.23076923076923,
+                      "total": 300,
+                      "vencimiento": "2023-05-31T09:30:00",
+                      "prestamo": 5,
+                      "reciboGen": {
+                        "idRecibosGen": 1,
+                        "fecha": "2023-06-05T10:35:24",
+                        "valor": 300
+                      }
+                    },
+                    {
+                      "idPagare": 16,
+                      "noPagare": 2,
+                      "capital": 230.76923076923077,
+                      "interes": 69.23076923076923,
+                      "total": 300,
+                      "vencimiento": "2023-06-07T09:30:00",
+                      "prestamo": 5,
+                      "reciboGen": {
+                        "idRecibosGen": 2,
+                        "fecha": "2023-06-05T10:36:19",
+                        "valor": 300
+                      }
+                    },
+                    {
+                      "idPagare": 17,
+                      "noPagare": 3,
+                      "capital": 230.76923076923077,
+                      "interes": 69.23076923076923,
+                      "total": 300,
+                      "vencimiento": "2023-06-14T09:30:00",
+                      "prestamo": 5,
+                      "reciboGen": {
+                        "idRecibosGen": 3,
+                        "fecha": "2023-06-05T10:36:23",
+                        "valor": 300
+                      }
+                    },
+                    {
+                      "idPagare": 18,
+                      "noPagare": 4,
+                      "capital": 230.76923076923077,
+                      "interes": 69.23076923076923,
+                      "total": 300,
+                      "vencimiento": "2023-06-21T09:30:00",
+                      "prestamo": 5,
+                      "reciboGen": {
+                        "idRecibosGen": 4,
+                        "fecha": "2023-06-05T10:36:25",
+                        "valor": 300
+                      }
+                    },
+                    {
+                      "idPagare": 19,
+                      "noPagare": 5,
+                      "capital": 230.76923076923077,
+                      "interes": 69.23076923076923,
+                      "total": 300,
+                      "vencimiento": "2023-06-28T09:30:00",
+                      "prestamo": 5,
+                      "reciboGen": {
+                        "idRecibosGen": 5,
+                        "fecha": "2023-06-05T10:36:39",
+                        "valor": 300
+                      }
+                    },
+                    {
+                      "idPagare": 20,
+                      "noPagare": 6,
+                      "capital": 230.76923076923077,
+                      "interes": 69.23076923076923,
+                      "total": 300,
+                      "vencimiento": "2023-07-05T09:30:00",
+                      "prestamo": 5,
+                      "reciboGen": {
+                        "idRecibosGen": 6,
+                        "fecha": "2023-06-05T10:36:44",
+                        "valor": 300
+                      }
+                    },
+                    {
+                      "idPagare": 21,
+                      "noPagare": 7,
+                      "capital": 230.76923076923077,
+                      "interes": 69.23076923076923,
+                      "total": 300,
+                      "vencimiento": "2023-07-12T09:30:00",
+                      "prestamo": 5,
+                      "reciboGen": {
+                        "idRecibosGen": 7,
+                        "fecha": "2023-06-05T10:36:47",
+                        "valor": 300
+                      }
+                    },
+                    {
+                      "idPagare": 22,
+                      "noPagare": 8,
+                      "capital": 230.76923076923077,
+                      "interes": 69.23076923076923,
+                      "total": 300,
+                      "vencimiento": "2023-07-19T09:30:00",
+                      "prestamo": 5,
+                      "reciboGen": {
+                        "idRecibosGen": 8,
+                        "fecha": "2023-06-05T10:36:50",
+                        "valor": 300
+                      }
+                    },
+                    {
+                      "idPagare": 23,
+                      "noPagare": 9,
+                      "capital": 230.76923076923077,
+                      "interes": 69.23076923076923,
+                      "total": 300,
+                      "vencimiento": "2023-07-26T09:30:00",
+                      "prestamo": 5,
+                      "reciboGen": {
+                        "idRecibosGen": 9,
+                        "fecha": "2023-06-05T10:36:54",
+                        "valor": 300
+                      }
+                    },
+                    {
+                      "idPagare": 24,
+                      "noPagare": 10,
+                      "capital": 230.76923076923077,
+                      "interes": 69.23076923076923,
+                      "total": 300,
+                      "vencimiento": "2023-08-02T09:30:00",
+                      "prestamo": 5,
+                      "reciboGen": {
+                        "idRecibosGen": 10,
+                        "fecha": "2023-06-05T10:36:58",
+                        "valor": 300
+                      }
+                    },
+                    {
+                      "idPagare": 25,
+                      "noPagare": 11,
+                      "capital": 230.76923076923077,
+                      "interes": 69.23076923076923,
+                      "total": 300,
+                      "vencimiento": "2023-08-09T09:30:00",
+                      "prestamo": 5,
+                      "reciboGen": {
+                        "idRecibosGen": 11,
+                        "fecha": "2023-06-05T10:37:02",
+                        "valor": 300
+                      }
+                    },
+                    {
+                      "idPagare": 26,
+                      "noPagare": 12,
+                      "capital": 230.76923076923077,
+                      "interes": 69.23076923076923,
+                      "total": 300,
+                      "vencimiento": "2023-08-16T09:30:00",
+                      "prestamo": 5,
+                      "reciboGen": {
+                        "idRecibosGen": 12,
+                        "fecha": "2023-06-05T10:37:06",
+                        "valor": 300
+                      }
+                    },
+                    {
+                      "idPagare": 27,
+                      "noPagare": 13,
+                      "capital": 230.76923076923077,
+                      "interes": 69.23076923076923,
+                      "total": 300,
+                      "vencimiento": "2023-08-23T09:30:00",
+                      "prestamo": 5,
+                      "reciboGen": {
+                        "idRecibosGen": 13,
+                        "fecha": "2023-06-05T10:37:10",
+                        "valor": 300
+                      }
+                    }
+                  ],
+                  "cliente": 6
+                }
+              ],
+              "ruta": 5
+            }
+          ],
+          "cobrador": 6
+        }
+      ]
+    }
+  }
+]

@@ -4,7 +4,7 @@ import { FiSettings } from 'react-icons/fi';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 
 import { Navbar, Footer, Sidebar, ThemeSettings } from './components';
-import { Ecommerce, Orders, Calendar, Employees, Stacked, Pyramid, Customers, Kanban, Line, Area, Bar, Pie, Financial, ColorPicker, ColorMapping, Editor } from './pages';
+import { Ecommerce, Expenses, Receipts, Collections, Balances, Calendar, Employees, Customers, Kanban } from './pages';
 import './App.css';
 
 import { useStateContext } from './contexts/ContextProvider';
@@ -66,16 +66,19 @@ const App = () => {
               <Routes>
                 {/* dashboard  */}
                 <Route path="/" element={(<Ecommerce />)} />
-                <Route path="/ecommerce" element={(<Ecommerce />)} />
+                <Route path="/loan" element={(<Ecommerce />)} />
 
-                {/* pages  */}
-                <Route path="/orders" element={<Orders />} />
+                {/* services  */}
                 <Route path="/employees" element={<Employees />} />
                 <Route path="/customers" element={<Customers />} />
+                <Route path="/expenses" element={<Expenses />} />
+                <Route path="/receipts" element={<Receipts />} />
+                <Route path="/collections" element={<Collections />} />
+                <Route path="/balances" element={<Balances />} />
 
                 {/* apps  */}
-                <Route path="/kanban" element={<Kanban />} />
                 <Route path="/calendar" element={<Calendar />} />
+                <Route path="/kanban" element={<Kanban />} />
 
               </Routes>
             </div>
