@@ -1,0 +1,14 @@
+POST http://localhost:8080/ruta/save
+Content-Type: application/json
+
+{
+  "nombre":"Matancita 2",
+  "dia":"LUNES",
+  "zona":{
+      "idZona":2
+  },
+  "cobrador":{
+      "idCobrador":6
+  }
+
+}

@@ -1,0 +1,24 @@
+PUT http://localhost:8080/cliente/update/1
+Content-Type: application/json
+
+{
+  "nombre": "John",
+  "apellido": "Doe",
+  "cedula": "123456789",
+  "direccion": "123 Main St",
+  "fechaNacimiento": "2023-05-24T10:30:00",
+  "lugarTrabajo": "ABC Company",
+  "telTrabajo": "555-123-456",
+  "celular": "555-987-654",
+  "telResidencia": "555-789-123",
+  "email": "john.doe@example.com",
+  "ocupacion": "Engineer",
+  "recomendado": "Jane Smith",
+  "observaciones": "Some observations",
+  "fechaIngreso": "2023-05-24T12:00:00",
+  "estatus": 1,
+  "prestamos": [],
+  "ruta": {
+    "idRuta": 4
+  }
+}

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { GridComponent, ColumnsDirective, ColumnDirective, Page, Selection, Inject, Edit, Toolbar, Sort, Filter } from '@syncfusion/ej2-react-grids';
 
-import { customersData, customersGrid } from '../data/dummy';
+import { customersData, customersGrid } from '../data/dummy.jsx';
 import { Header } from '../components';
 import avatar3 from '../data/avatar3.png';
+
+const apiOrigin = import.meta.env.VITE_API_ORIGIN || 'http://localhost:80801';
 
 const Customers = () => {
   const [customersList, setCustomerList] = useState([]);
@@ -13,9 +15,7 @@ const Customers = () => {
   const editing = { allowDeleting: true, allowEditing: true };
 
   useEffect(() => {
-    const url = 'http://localhost:8080/cliente/list';
-
-    fetch(url)
+    fetch(`${apiOrigin}/cliente/list`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { GridComponent, Inject, ColumnsDirective, ColumnDirective, Page, Selection, Edit, Toolbar, Sort, Filter, Search } from '@syncfusion/ej2-react-grids';
 
-import { employeesData, employeesGrid } from '../data/dummy';
+import { employeesData, employeesGrid } from '../data/dummy.jsx';
 import { Header } from '../components';
 import avatar3 from '../data/avatar3.png';
+
+const apiOrigin = import.meta.env.VITE_API_ORIGIN || 'http://localhost:80801';
 
 const Employees = () => {
   const [usersList, setUsersList] = useState([]);
@@ -12,8 +14,7 @@ const Employees = () => {
   const toolbarOptions = ['Add', 'Edit', 'Delete', 'Update', 'Cancel'];
 
   useEffect(() => {
-    const origin = process.env.ORIGIN;
-    const url = `${origin}/usuarios/list`;
+    const url = `${apiOrigin}/usuario/list`;
 
     fetch(url)
       .then((response) => {

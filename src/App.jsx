@@ -7,7 +7,7 @@ import { Navbar, Footer, Sidebar, ThemeSettings } from './components';
 import { Ecommerce, Expenses, Receipts, Collections, Balances, Calendar, Employees, Customers, Kanban } from './pages';
 import './App.css';
 
-import { useStateContext } from './contexts/ContextProvider';
+import { useStateContext } from './contexts/ContextProvider.jsx';
 
 const App = () => {
   const { setCurrentColor, setCurrentMode, currentMode, activeMenu, currentColor, themeSettings, setThemeSettings } = useStateContext();
