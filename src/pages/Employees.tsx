@@ -22,46 +22,20 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 
 import { Header } from '../components';
+import { selected } from '@syncfusion/ej2/pivotview';
+
+const apiOrigin:string = import.meta.env.VITE_API_ORIGIN || 'http://localhost:80801';
 
 interface Data {
-  calories: number;
-  carbs: number;
-  fat: number;
+  id: number;
   name: string;
-  protein: number;
+  username: string;
+  role: string;
+  hireDate: string;
+  company: string;
+  cedula: string;
+  status: string
 }
-
-function createData(
-  name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number,
-): Data {
-  return {
-    name,
-    calories,
-    fat,
-    carbs,
-    protein,
-  };
-}
-
-const rows = [
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Donut', 452, 25.0, 51, 4.9),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-  createData('Honeycomb', 408, 3.2, 87, 6.5),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Jelly Bean', 375, 0.0, 94, 0.0),
-  createData('KitKat', 518, 26.0, 65, 7.0),
-  createData('Lollipop', 392, 0.2, 98, 0.0),
-  createData('Marshmallow', 318, 0, 81, 2.0),
-  createData('Nougat', 360, 19.0, 9, 37.0),
-  createData('Oreo', 437, 18.0, 63, 4.0),
-];
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {
@@ -114,32 +88,44 @@ const headCells: readonly HeadCell[] = [
   {
     id: 'name',
     numeric: false,
-    disablePadding: true,
-    label: 'Dessert (100g serving)',
+    disablePadding: false,
+    label: 'Nombre',
   },
   {
-    id: 'calories',
-    numeric: true,
+    id: 'username',
+    numeric: false,
     disablePadding: false,
-    label: 'Calories',
+    label: 'Usuario',
   },
   {
-    id: 'fat',
-    numeric: true,
+    id: 'role',
+    numeric: false,
     disablePadding: false,
-    label: 'Fat (g)',
+    label: 'Rol',
   },
   {
-    id: 'carbs',
-    numeric: true,
+    id: 'hireDate',
+    numeric: false,
     disablePadding: false,
-    label: 'Carbs (g)',
+    label: 'Fecha Inicio',
   },
   {
-    id: 'protein',
-    numeric: true,
+    id: 'company',
+    numeric: false,
     disablePadding: false,
-    label: 'Protein (g)',
+    label: 'Empresa',
+  },
+  {
+    id: 'cedula',
+    numeric: false,
+    disablePadding: false,
+    label: 'Cédula',
+  },
+  {
+    id: 'status',
+    numeric: false,
+    disablePadding: false,
+    label: 'Estado',
   },
 ];
 
@@ -200,12 +186,44 @@ function EnhancedTableHead(props: EnhancedTableProps) {
   );
 }
 
+const deleteRecordById = async (id: number) => {
+  try {
+    const response = await fetch(`${apiOrigin}/usuario/delete/${id}`, {
+      method: 'DELETE',
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error to delete the user with ID: ${id}.`);
+    }
+
+    console.log(`User with ID ${id} deleted successfully.`);
+  } catch (error) {
+    console.error(`Error to delete the user with ID ${id}:`, error);
+  }
+};
+
+function handleDeleteUser(props: EnhancedTableToolbarProps) {
+  const { selectedUsers, usersList, setUsersList } = props;
+  let updatedUsersList: Data[] = [];
+
+  selectedUsers.forEach((id) => {
+    deleteRecordById(id).then(() => {
+      updatedUsersList = usersList.filter((user) => user.id !== id);
+    });
+  });
+
+  setUsersList(updatedUsersList);
+};
+
 interface EnhancedTableToolbarProps {
-  numSelected: number;
+  selectedUsers: readonly number[];
+  usersList:Data[];
+  setUsersList: React.Dispatch<React.SetStateAction<Data[]>>
 }
 
 function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
-  const { numSelected } = props;
+  const { selectedUsers, usersList, setUsersList } = props;
+  const numSelected = selectedUsers.length;
 
   return (
     <Toolbar
@@ -230,7 +248,7 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
       ) : ""
       }
       {numSelected > 0 ? (
-        <Tooltip title="Delete">
+        <Tooltip title="Delete" onClick={() => handleDeleteUser(selectedUsers, usersList, setUsersList)}>
           <IconButton>
             <DeleteIcon />
           </IconButton>
@@ -248,11 +266,45 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
 
 export default function Employees() {
   const [order, setOrder] = React.useState<Order>('asc');
-  const [orderBy, setOrderBy] = React.useState<keyof Data>('calories');
-  const [selected, setSelected] = React.useState<readonly string[]>([]);
+  const [orderBy, setOrderBy] = React.useState<keyof Data>('name');
+  const [selected, setSelected] = React.useState<readonly number[]>([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [usersList, setUsersList] = React.useState<Data[]>([])
+
+  React.useEffect(() => {
+    const url = `${apiOrigin}/usuario/list`;
+
+    fetch(url)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        const mappedData:Data[] = data.map((item) => {
+          const employee:Data = {
+            id: item.idUsuario,
+            name: `${item.cobrador.nombre} ${item.cobrador.apellido}`,
+            username: item.usuario,
+            role: item.rol.idRol === 1 ? 'Administrador' : 'Cobrador',
+            hireDate: `${item.cobrador.fechaIngreso[2]}/${item.cobrador.fechaIngreso[1]}/${item.cobrador.fechaIngreso[0]}`,
+            company: item.empresa.nombre,
+            cedula: `${item.cobrador.cedula}`,
+            status: item.estatus === 1 ? '🟢 Activo' : '🟠 Inactivo',
+          };
+          return employee;
+        });
+
+        setUsersList(mappedData);
+      })
+      .catch((error) => {
+        // Manejar errores de la solicitud
+        console.error('Error:', error);
+      });
+  }, []);
 
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
@@ -265,19 +317,19 @@ export default function Employees() {
 
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      const newSelected = rows.map((n) => n.name);
+      const newSelected = usersList.map((n) => n.id);
       setSelected(newSelected);
       return;
     }
     setSelected([]);
   };
 
-  const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
-    const selectedIndex = selected.indexOf(name);
-    let newSelected: readonly string[] = [];
+  const handleClick = (event: React.MouseEvent<unknown>, id: number) => {
+    const selectedIndex = selected.indexOf(id);
+    let newSelected: readonly number[] = [];
 
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
+      newSelected = newSelected.concat(selected, id);
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
     } else if (selectedIndex === selected.length - 1) {
@@ -305,15 +357,15 @@ export default function Employees() {
     setDense(event.target.checked);
   };
 
-  const isSelected = (name: string) => selected.indexOf(name) !== -1;
+  const isSelected = (id: number) => selected.indexOf(id) !== -1;
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - usersList.length) : 0;
 
   const visibleRows = React.useMemo(
     () =>
-      stableSort(rows, getComparator(order, orderBy)).slice(
+      stableSort(usersList, getComparator(order, orderBy)).slice(
         page * rowsPerPage,
         page * rowsPerPage + rowsPerPage,
       ),
@@ -325,7 +377,7 @@ export default function Employees() {
       <Header category="Sección" title="Clientes" />
       <Box sx={{ width: '100%' }}>
         <Paper sx={{ width: '100%', mb: 2 }}>
-          <EnhancedTableToolbar numSelected={selected.length} />
+          <EnhancedTableToolbar selectedUsers={selected} setUsersList={setUsersList} usersList={usersList}/>
           <TableContainer>
             <Table
               sx={{ minWidth: 750 }}
@@ -338,21 +390,21 @@ export default function Employees() {
                 orderBy={orderBy}
                 onSelectAllClick={handleSelectAllClick}
                 onRequestSort={handleRequestSort}
-                rowCount={rows.length}
+                rowCount={usersList.length}
               />
               <TableBody>
                 {visibleRows.map((row, index) => {
-                  const isItemSelected = isSelected(row.name);
+                  const isItemSelected = isSelected(row.id);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.name)}
+                      onClick={(event) => handleClick(event, row.id)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.name}
+                      key={row.id}
                       selected={isItemSelected}
                       sx={{ cursor: 'pointer' }}
                     >
@@ -370,13 +422,16 @@ export default function Employees() {
                         id={labelId}
                         scope="row"
                         padding="none"
+                        align='left'
                       >
                         {row.name}
                       </TableCell>
-                      <TableCell align="right">{row.calories}</TableCell>
-                      <TableCell align="right">{row.fat}</TableCell>
-                      <TableCell align="right">{row.carbs}</TableCell>
-                      <TableCell align="right">{row.protein}</TableCell>
+                      <TableCell align="left">{row.username}</TableCell>
+                      <TableCell align="left">{row.role}</TableCell>
+                      <TableCell align="left">{row.hireDate}</TableCell>
+                      <TableCell align="left">{row.company}</TableCell>
+                      <TableCell align="left">{row.cedula}</TableCell>
+                      <TableCell align="left">{row.status}</TableCell>
                     </TableRow>
                   );
                 })}
@@ -395,7 +450,7 @@ export default function Employees() {
           <TablePagination
             rowsPerPageOptions={[5, 10, 25]}
             component="div"
-            count={rows.length}
+            count={usersList.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}
