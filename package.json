@@ -10,6 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.1",
+    "@mui/material": "^5.14.1",
     "@syncfusion/ej2": "^22.1.39",
     "@syncfusion/ej2-base": "^22.1.38",
     "@syncfusion/ej2-react-calendars": "^22.1.38",
